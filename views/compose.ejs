@@ -1,11 +1,18 @@
 <%- include('partials/header'); -%><!--path of file from viwes folder -->
-<h1>compose</h1>
+<h1>Compose</h1>
 <div>
-    <form action="/" method="post">
+    <form action="/compose" method="post" id="blogform">
         <label for="text">Text</label>
+        <div style="margin-bottom: 1rem ;">
         <input type="text" id="text" name="blog">
-        <button type="submit" >Publish</button>
+        </div>
+        <label for="text">Post</label>  
+        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+            <textarea rows="4" cols="50" name="fullblog" form="blogform" placeholder="Enter Your Blog" style="padding: 1rem;"></textarea>
+        </div>
+        <div>
+            <button type="submit" style="padding: 1rem; font-size:larger; background-color: rgb(1, 66, 244); border: aliceblue; border-radius:0.3rem;color:white;">Publish</button>
+        </div>
     </form>
-   
 </div>
 <%- include('partials/footer'); -%>
