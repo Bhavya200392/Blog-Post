@@ -4,7 +4,8 @@
 
 <% posts.forEach(function(p){   %>
     <h1><%=p.post %></h1>
-    <p><%=p.Blog %></p>
+    <p><%= p.Blog.substring(0,100)%><a href="/post/<%=p.post%>">... Read More</a></p>
+    
     <!-- <% console.log(p.post); %> -->
 <% }) %>
 
