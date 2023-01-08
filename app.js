@@ -10,6 +10,7 @@ mongoose.set('strictQuery',false);
 mongoose.connect("mongodb://127.0.0.1:27017/BlogDB",{useNewUrlParser: true});
 //Making Schema
 const blog_schema=new mongoose.Schema({
+  _id:Number,
   name:String,
   blog:String
 })
@@ -84,15 +85,31 @@ app.get('/compose', function(req, res) {
 app.post('/compose',function(req, res) {
   //Making Document And Save Into Database 
   //Take The Value From id data base stor into id variable and add 1 and use for new post variable---Todo
+  let blog_id=0;
+
+  id.find({},function(err,value){
+  blog_id=value[0].count+1;
+
   const new_post=new Post({
+    _id :blog_id,
     name:req.body.blog,
     blog:req.body.fullblog
   });
-
-  //update the id value into database
-
-  new_post.save()
   //Store The Blog Into Database
+  new_post.save();
+  //update the id value into database
+  var count_id = '63ba9d3239f84f11c9cf623c';
+  id.findByIdAndUpdate(count_id, { count: blog_id },function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Update Count: ", docs);
+    }
+  });
+})
+
+
   res.redirect('/');
   // console.log(postObj);
 });
