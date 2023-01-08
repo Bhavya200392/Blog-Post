@@ -42,8 +42,7 @@ var posts=[];
 app.get('/', function(req, res) {
 
   res.render("home",{
-    HomeSartingContent:homeStartingContent,
-    posts:posts
+    HomeSartingContent:homeStartingContent
   });
 
 });
@@ -68,18 +67,25 @@ app.get('/post', function(req, res) {
 
 app.get('/post/:newblog', function(req, res){
   // console.log(req.params.newblog);
-  posts.forEach(function(p){
-    if( _.lowerCase(p.post)===_.lowerCase(req.params.newblog))
-    {
-      console.log("Found");
-      res.render("post",{Name:p.post,Content:p.Blog})
-    }
-    // else {
-    //   let content="Soory ! We Dont Have Any Blog Of "+p.post;
-    //   console.log("Not Found");
-    //   res.render("post",{Name:p.post,Content:content}) 
-    // }
-  })
+  let blog_array=[];
+  Post.find({},function(err,  Blogs) {
+    blog_array=Blogs;
+    blog_array.forEach(function(p){
+      if( _.lowerCase(p.name)===_.lowerCase(req.params.newblog))
+      {
+        console.log("Found");
+        res.render("post",{Name:p.name,Content:p.blog})
+      }
+      // else {
+      //   let content="Soory ! We Dont Have Any Blog Of "+p.post;
+      //   console.log("Not Found");
+      //   res.render("post",{Name:p.post,Content:content}) 
+      // }
+    })
+  
+  });
+
+  
 })
 
 app.get('/contact', function(req, res) {

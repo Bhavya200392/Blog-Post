@@ -3,7 +3,7 @@
 <% posts.forEach(function(p){   %>
 
     <h2><%=p.name %></h2>
-    <p><%= p.blog.substring(0,100)%><a href="/post/<%=p.post%>">... Read More</a></p>
+    <p><%= p.blog.substring(0,100)%><a href="/post/<%=p.name%>">... Read More</a></p>
     
     <!-- <% console.log(p.post); %> -->
 <% }) %>
