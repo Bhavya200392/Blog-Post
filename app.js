@@ -33,6 +33,13 @@ app.get('/about', function(req, res) {
   res.render("about",{AboutPage:aboutContent});
 });
 
+
+app.get('/post', function(req, res) {
+  res.render("blogs",{
+    posts:posts
+  });
+})
+
 app.get('/post/:newblog', function(req, res){
   // console.log(req.params.newblog);
   posts.forEach(function(p){
