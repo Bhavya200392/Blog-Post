@@ -40,7 +40,7 @@ var posts=[];
 
 //Routes
 app.get('/', function(req, res) {
-  console.log(posts);
+
   res.render("home",{
     HomeSartingContent:homeStartingContent,
     posts:posts
@@ -53,8 +53,16 @@ app.get('/about', function(req, res) {
 
 
 app.get('/post', function(req, res) {
-  res.render("blogs",{
-    posts:posts
+  let blog_array = [];
+ 
+  Post.find({},function(err,  Blogs) {
+    blog_array=Blogs;
+    res.render("blogs",{
+      posts:blog_array
+    });
+    // blog_array.forEach(function(blogs){
+    //   console.log(blogs.name);
+    // })
   });
 })
 
@@ -102,9 +110,6 @@ app.post('/compose',function(req, res) {
   id.findByIdAndUpdate(count_id, { count: blog_id },function (err, docs) {
     if (err){
         console.log(err)
-    }
-    else{
-        console.log("Update Count: ", docs);
     }
   });
 })
