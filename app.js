@@ -59,9 +59,6 @@ app.get('/post', function(req, res) {
     res.render("blogs",{
       posts:blog_array
     });
-    // blog_array.forEach(function(blogs){
-    //   console.log(blogs.name);
-    // })
   });
 })
 
